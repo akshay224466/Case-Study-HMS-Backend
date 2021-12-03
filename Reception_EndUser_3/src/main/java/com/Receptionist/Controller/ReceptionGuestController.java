@@ -1,10 +1,6 @@
-package com.Guest.Controller;
+package com.Receptionist.Controller;
 
 
-
-
-
-import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -15,57 +11,57 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.client.RestTemplate;
 
-import com.Guest.Models.Guest;
-import com.Guest.Models.GuestList;
-import com.Guest.Service.Guestservice;
 
+import com.Receptionist.Models.Guest;
+import com.Receptionist.Models.GuestList;
 
 
 
 @RestController
-@RequestMapping("/Guest")
-public class GuestController {
+@RequestMapping("/reception/guest")
+public class ReceptionGuestController {
 	
 	@Autowired
-	Guestservice guestService;
-
+	RestTemplate rest;
+	
 	@GetMapping("/message")
 	public String test() {
-		return "Hello I am From Microservice3";
+		return "Hello";
 	}
 	
 	@PostMapping("/addGuest")
 	public Guest addGuest(@RequestBody Guest guest)
 	{
-		return this.guestService.addGuest(guest);
+		return rest.postForObject("http://Guest-Microservice/Guest/addGuest/", guest, Guest.class);
 	}
 	
 	@PutMapping("/updateGuest")
 	public Guest updateGuest(@RequestBody Guest guest)
 	{
-		return this.guestService.updateGuest(guest); 
+		rest.put("http://Guest-Microservice/Guest/updateGuest/",guest, Guest.class);
+		return guest;
 	}
 	
 	@DeleteMapping("/deleteGuest/{id}")
 	public String deleteGuestById(@PathVariable("id") String id)
 	{
-		return this.guestService.deleteGuest(Integer.parseInt(id));
+		rest.delete("http://Guest-Microservice/Guest/deleteGuest/"+id);
+		return "Deleted room "+id;
 	}
 	
 	@GetMapping("getGuest/{id}")
-	public Optional<Guest> getGuest(@PathVariable String id)
+	public Guest getGuest(@PathVariable String id)
 	{
-		return this.guestService.getGuest(Integer.parseInt(id));
+		return rest.getForObject("http://Guest-Microservice/Guest/getGuest/"+id, Guest.class);
 	}
 	
 	@GetMapping("getAllGuest")
 	public GuestList getAllGuest()
 	{
-		GuestList list=new GuestList();
-		list.setAllGuest(this.guestService.getAllGuest());
-		return list;
+		return rest.getForObject("http://Guest-Microservice/Guest/getAllGuest/", GuestList.class);
 	}
-
 	
+
 }

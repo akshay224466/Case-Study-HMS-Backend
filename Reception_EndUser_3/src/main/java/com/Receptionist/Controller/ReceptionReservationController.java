@@ -1,9 +1,6 @@
-package com.Reservation.Controller;
+package com.Receptionist.Controller;
 
 
-
-
-import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -14,23 +11,21 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.client.RestTemplate;
 
 
+import com.Receptionist.Models.Reservation;
+import com.Receptionist.Models.ReservationList;
 
-import com.Reservation.Models.Reservation;
-import com.Reservation.Models.ReservationList;
-import com.Reservation.Services.ReservationService;
 
 
 @RestController
-@RequestMapping("/reservation")
-public class ReservationController {
-
+@RequestMapping("/reception/reservation")
+public class ReceptionReservationController {
+	
 	@Autowired
-	private ReservationService service;
+	RestTemplate rest;
 	
-	
-
 	@GetMapping("/hello")
 	public String helloMsgs() {
 		return "Reservation Microservice";
@@ -39,37 +34,39 @@ public class ReservationController {
 	@PostMapping("/addReservation")
 	public Reservation addReservation(@RequestBody Reservation book) 
 	{
-		 this.service.addReservation(book);
-		return book; 
+		return rest.postForObject("http://Reservation-Microservice/reservation/addReservation/", book, Reservation.class);
+		
 	}
 
 
 	@PutMapping("/updateReservation")
 	public Reservation updateReservation(@RequestBody Reservation book)
 	{
-		return this.service.updateReservation(book); 
+		rest.put("http://Reservation-Microservice/reservation/updateReservation/", book,Reservation.class);
+		return book;
 	}
 	
 
 	@DeleteMapping("/cancelReservation/{id}")
 	public String deleteReservation(@PathVariable("id") String id) 
 	{
-		return this.service.deleteReservation(Long.parseLong(id));
+		rest.delete("http://Reservation-Microservice/reservation/cancelReservation/"+id);
+		return "Deleted room "+id;
 	}
 	
 
 	@GetMapping("/ShowAllReservations")
 	public ReservationList getResList()
 	{
-		ReservationList list=new ReservationList();
-		list.setResList(this.service.getResList());
-		return list;
+		return rest.getForObject("http://Reservation-Microservice/reservation/ShowAllReservations/", ReservationList.class);
 	}
 	
 	@GetMapping("/getByreservation/{id}")
-	public Optional<Reservation> getReservation(@PathVariable("id") String id)
+	public Reservation getReservation(@PathVariable("id") String id)
 	{
-		return this.service.getReservation(Long.parseLong(id));
+		return rest.getForObject("http://Reservation-Microservice/reservation/getByreservation/"+id, Reservation.class);
+
 	}
 	
+
 }

@@ -1,13 +1,14 @@
 package com.Reservation.Services;
 
+
+
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-
 import com.Reservation.Models.Reservation;
-
 import com.Reservation.Repo.ReservationRepo;
 
 @Service
@@ -17,33 +18,38 @@ public class ReservationServiceImpl implements ReservationService {
 	private ReservationRepo repos;
 
 	@Override
-	public List<Reservation> findAll() {
-		return repos.findAll();
+	public Reservation addReservation(Reservation book) {
+		return repos.insert(book);
+		
+		
 	}
 
 	@Override
-	public void addReservation(Reservation book) {
-		repos.insert(book);
-	}
-
-	@Override
-	public Object updateReservation(Reservation book) {
-	
+	public Reservation updateReservation(Reservation book) {
+		// TODO Auto-generated method stub
 		return repos.save(book);
 	}
 
 	@Override
 	public String deleteReservation(long parseLong) {
-		repos.deleteById(parseLong);
-		return "Reservartion Cancelled";
-		
+		// TODO Auto-generated method stub
+	    repos.deleteById(parseLong);
+		return "Deleted employee with ID :" + parseLong;
 	}
 
 	@Override
-	public List<Reservation> getAllReservation() {
-		
+	public List<Reservation> getResList() {
+		// TODO Auto-generated method stub
 		return repos.findAll();
 	}
+
+	@Override
+	public Optional<Reservation> getReservation(long parseLong) {
+		// TODO Auto-generated method stub
+		return repos.findById(parseLong);
+	}
+
+	
 
 		
 	}
