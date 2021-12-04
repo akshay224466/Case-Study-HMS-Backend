@@ -13,9 +13,6 @@ public class RoomList {
 			this.allRoom = allRoom;
 		}
 
-		public void setRoomAvl(Object roomAvl) {
-			// TODO Auto-generated method stub
-			
-		}
+		
 }
 

@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.Room.Models.Room;
+import com.Room.Models.RoomList;
 import com.Room.Repository.RoomMongodbRepos;
 
 
@@ -52,9 +53,11 @@ public class RoomserviceImpl implements Roomservice{
 
 
 	@Override
-	public List<Room> getRoomAvl() {
+	public RoomList getRoomAvl() {
 		// TODO Auto-generated method stub
-		return roomMongodbRepo.findAvailable();
+		RoomList list=new RoomList();
+		list.setAllRoom(roomMongodbRepo.findAvailable());;
+		return list;
 	}
 
 }

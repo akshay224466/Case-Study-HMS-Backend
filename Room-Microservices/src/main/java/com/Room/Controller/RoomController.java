@@ -63,9 +63,7 @@ public class RoomController {
 	@GetMapping("/findRoomAvl")
 	public RoomList getRoomAvl() {
 
-		RoomList list=new RoomList();
-		list.setRoomAvl(this.roomService.getRoomAvl());
-		return list;
+		return this.roomService.getRoomAvl();
 		
 	}
 	

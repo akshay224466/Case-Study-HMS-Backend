@@ -11,7 +11,7 @@ public class Room {
 	private int roomCharges;
 	private String roomType;
 	private String roomDesc;
-	private Boolean roomAvl;
+	private boolean roomAvl;
 	public Long getRoomId() {
 		return roomId;
 	}
@@ -36,18 +36,17 @@ public class Room {
 	public void setRoomDesc(String roomDesc) {
 		this.roomDesc = roomDesc;
 	}
-	public Boolean getRoomAvl() {
+	public boolean isRoomAvl() {
 		return roomAvl;
 	}
-	public void setRoomAvl(Boolean roomAvl) {
+	public void setRoomAvl(boolean roomAvl) {
 		this.roomAvl = roomAvl;
 	}
-	@Override
-	public String toString() {
-		return "Room [roomId=" + roomId + ", roomCharges=" + roomCharges + ", roomType=" + roomType + ", roomDesc="
-				+ roomDesc + ", roomAvl=" + roomAvl + "]";
+	public Room() {
+		super();
+		// TODO Auto-generated constructor stub
 	}
-	public Room(Long roomId, int roomCharges, String roomType, String roomDesc, Boolean roomAvl) {
+	public Room(Long roomId, int roomCharges, String roomType, String roomDesc, boolean roomAvl) {
 		super();
 		this.roomId = roomId;
 		this.roomCharges = roomCharges;
@@ -55,9 +54,10 @@ public class Room {
 		this.roomDesc = roomDesc;
 		this.roomAvl = roomAvl;
 	}
-	public Room() {
-		
-	}
+	
+	
+	
+	
 	
 	
 	
