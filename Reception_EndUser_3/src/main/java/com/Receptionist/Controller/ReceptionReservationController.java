@@ -32,9 +32,9 @@ public class ReceptionReservationController {
 	}
 	
 	@PostMapping("/addReservation")
-	public Reservation addReservation(@RequestBody Reservation book) 
+	public String addReservation(@RequestBody Reservation book) 
 	{
-		return rest.postForObject("http://Reservation-Microservice/reservation/addReservation/", book, Reservation.class);
+		return rest.postForObject("http://Reservation-Microservice/reservation/addReservation/", book, String.class);
 		
 	}
 

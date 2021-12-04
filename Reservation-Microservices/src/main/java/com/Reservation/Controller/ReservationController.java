@@ -37,10 +37,10 @@ public class ReservationController {
 	}
 	
 	@PostMapping("/addReservation")
-	public Reservation addReservation(@RequestBody Reservation book) 
+	public String addReservation(@RequestBody Reservation book) 
 	{
-		 this.service.addReservation(book);
-		return book; 
+		
+		return  this.service.addReservation(book); 
 	}
 
 

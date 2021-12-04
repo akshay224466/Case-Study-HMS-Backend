@@ -7,7 +7,7 @@ import com.Reservation.Models.Reservation;
 
 public interface ReservationService {
 
-	Reservation addReservation(Reservation book);
+	String addReservation(Reservation book);
 
 	Reservation updateReservation(Reservation book);
 
