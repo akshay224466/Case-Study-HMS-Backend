@@ -15,9 +15,13 @@ import com.Room.Models.Room;
 @Repository
 public interface RoomMongodbRepos extends MongoRepository<Room, Long>  {
 	
+
+	
 	
 	@Query("{roomAvl:true}")
 	List<Room> findAvailable();
+
+	
 	
 	
 	

@@ -42,11 +42,6 @@ public class Room {
 	public void setRoomAvl(Boolean roomAvl) {
 		this.roomAvl = roomAvl;
 	}
-	@Override
-	public String toString() {
-		return "Room [roomId=" + roomId + ", roomCharges=" + roomCharges + ", roomType=" + roomType + ", roomDesc="
-				+ roomDesc + ", roomAvl=" + roomAvl + "]";
-	}
 	public Room(Long roomId, int roomCharges, String roomType, String roomDesc, Boolean roomAvl) {
 		super();
 		this.roomId = roomId;
@@ -56,8 +51,11 @@ public class Room {
 		this.roomAvl = roomAvl;
 	}
 	public Room() {
-		
+		super();
+		// TODO Auto-generated constructor stub
 	}
+	
+	
 	
 	
 	

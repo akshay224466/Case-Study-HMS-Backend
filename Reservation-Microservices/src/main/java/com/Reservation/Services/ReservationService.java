@@ -9,7 +9,7 @@ public interface ReservationService {
 
 	String addReservation(Reservation book);
 
-	Reservation updateReservation(Reservation book);
+	Reservation updateReservation(Reservation book, long id);
 
 	String deleteReservation(long parseLong);
 

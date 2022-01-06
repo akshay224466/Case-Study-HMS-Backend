@@ -18,6 +18,14 @@ public class RoomserviceImpl implements Roomservice{
 	@Autowired
 	RoomMongodbRepos  roomMongodbRepo;
 
+	public RoomserviceImpl(RoomMongodbRepos roomMongodbRepos) {
+		
+		this.roomMongodbRepo=roomMongodbRepos;
+		// TODO Auto-generated constructor stub
+	}
+
+
+
 	@Override
 	public Room addRoom(Room room) {
 		// TODO Auto-generated method stub
@@ -32,10 +40,14 @@ public class RoomserviceImpl implements Roomservice{
 		return roomMongodbRepo.findById(parseLong);
 	}
 
+	/*
+	 * @Override public Room updateRoom(Room room) { // TODO Auto-generated method
+	 * stub return roomMongodbRepo.save(room); }
+	 */
 	@Override
-	public Room updateRoom(Room room) {
-		// TODO Auto-generated method stub
-		return roomMongodbRepo.save(room);
+	public Room updateRoom(Room room,long id) {
+		room.setRoomId(id);
+			return roomMongodbRepo.save(room);
 	}
 
 	@Override

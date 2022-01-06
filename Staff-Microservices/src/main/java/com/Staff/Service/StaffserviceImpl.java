@@ -18,6 +18,12 @@ public class StaffserviceImpl implements Staffservice{
 	@Autowired
 	StaffMongodbRepo staffmongodbRepo;
 
+	public StaffserviceImpl(StaffMongodbRepo repo) {
+		
+		staffmongodbRepo=repo;
+		// TODO Auto-generated constructor stub
+	}
+
 	@Override
 	public Staff addEmp(Staff emp) {
 		// TODO Auto-generated method stub
@@ -37,15 +43,16 @@ public class StaffserviceImpl implements Staffservice{
 	}
 
 	@Override
-	public Staff updateEmp(Staff emp) {
-		// TODO Auto-generated method stub
-		return staffmongodbRepo.save(emp);
-	}
-
-	@Override
 	public String deleteEmp(long parseLong) {
 		staffmongodbRepo.deleteById(parseLong);
 		return "Deleted employee with ID :" + parseLong;
+	}
+
+	@Override
+	public Staff updateEmp(Staff emp, long id) {
+
+		emp.setEmpId(id);
+		return staffmongodbRepo.save(emp);
 	}
 
 }

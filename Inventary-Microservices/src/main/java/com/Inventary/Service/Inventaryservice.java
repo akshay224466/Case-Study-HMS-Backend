@@ -17,13 +17,17 @@ public interface Inventaryservice {
 
 	Optional<Inventary> getInventary(long parseLong);
 
-	Inventary updateInventary(Inventary inv);
+
 
 	String deleteInventary(long parseLong);
 
 
 
 	List<Inventary> getAllInventary();
+
+
+
+	Inventary updateInventary(Inventary inv, long id);
 
 	
 

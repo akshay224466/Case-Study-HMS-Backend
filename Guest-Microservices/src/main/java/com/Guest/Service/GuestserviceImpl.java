@@ -17,15 +17,21 @@ public class GuestserviceImpl implements Guestservice {
 	@Autowired
 	GuestRepo guestRepo;
 
+	public GuestserviceImpl(GuestRepo repo) {
+		// TODO Auto-generated constructor stub
+		guestRepo=repo;
+	}
+
 	@Override
 	public Guest addGuest(Guest guest) {
 		return guestRepo.insert(guest);
 	}
 
 	@Override
-	public Guest updateGuest(Guest guest) {
+	public Guest updateGuest(Guest guest,int id) {
+		guest.setGuestId(id);
 		return guestRepo.save(guest);
-	}
+}
 
 	@Override
 	public String deleteGuest(int id) {

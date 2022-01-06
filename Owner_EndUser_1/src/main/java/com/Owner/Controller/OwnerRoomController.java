@@ -1,7 +1,7 @@
 package com.Owner.Controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
-
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
@@ -32,6 +32,9 @@ public class OwnerRoomController {
 		return restTemplate.getForObject("http://Room-Microservice/rooms/findById/"+id, Room.class);
 	}
 	
-
+	@DeleteMapping("/delete/{id}")
+	public String deleteRoom(@PathVariable("id") String id) {
+		return restTemplate.getForObject("http://Room-Microservice/rooms/delete/"+id, String.class);
+	}
 
 }

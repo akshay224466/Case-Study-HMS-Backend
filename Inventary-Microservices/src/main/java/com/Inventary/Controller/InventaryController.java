@@ -48,11 +48,11 @@ public class InventaryController {
 		return this.inventaryService.getInventary(Long.parseLong(id));
 	}
 	
-	@PutMapping("/updateInv")
-	public Inventary updateInventary(@RequestBody Inventary inv)
-	{
-		return this.inventaryService.updateInventary(inv);
-	}
+	@PutMapping("/updateInv/{id}")
+	public void updateInventary(@RequestBody Inventary inv, @PathVariable long id) {
+		
+	    inventaryService.updateInventary(inv,id);
+		}
 	
 	@DeleteMapping("/deleteByInv/{id}")
 	public String deleteInventary(@PathVariable("id") String id)

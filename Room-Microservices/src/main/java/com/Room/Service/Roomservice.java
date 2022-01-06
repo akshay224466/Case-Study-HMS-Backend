@@ -19,7 +19,7 @@ public interface Roomservice {
 
 	public Optional<Room> getRoom(long parseLong);
 
-	public Room updateRoom(Room room);
+	
 
 	public String deleteRoom(long parseLong);
 
@@ -28,6 +28,10 @@ public interface Roomservice {
 
 
 	public RoomList getRoomAvl();
+
+
+
+	public Room updateRoom(Room room, long id);
 
 
 

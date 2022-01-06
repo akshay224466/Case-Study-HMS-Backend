@@ -4,16 +4,16 @@ spring:
   cloud:
     gateway:
       routes:
-      - id:  receptionistModule
-        uri: http://localhost:8083/
+      - id:  Reception-Microservice
+        uri: http://localhost:8083/**
         predicates:
         - Path=/receptionist/**
-      - id: ownerModule
-        uri: http://localhost:8081/
+      - id: Owner-Microservice
+        uri: http://localhost:8081/**
         predicates:
         - Path=/owner/**
-      - id: managerModule
-        uri: http://localhost:8082/
+      - id: Manager-Microservice
+        uri: http://localhost:8082/**
         predicates:
         - Path=/manager/**
      

@@ -5,7 +5,7 @@ package com.Department.Services;
 import java.util.List;
 import java.util.Optional;
 
-import org.springframework.stereotype.Service;
+
 
 import com.Department.Models.Department;
 
@@ -14,8 +14,9 @@ import com.Department.Models.Department;
 
 
 
-@Service
+
 public interface Departmentservice {
+
 
 	Department addDepartment(Department dept);
 
@@ -23,9 +24,11 @@ public interface Departmentservice {
 
 	Optional<Department> getDepartment(long parseLong);
 
-	Department updateDepartment(Department dept);
+	Department updateDepartment(Department dept,long id);
 
 	String deleteDepartment(long parseLong);
+
+	
 
 	
 	

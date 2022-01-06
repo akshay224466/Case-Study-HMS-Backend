@@ -15,6 +15,13 @@ public class InventaryserviceImpl implements Inventaryservice {
 	
 	@Autowired
 	InventaryRepo inventaryRepo;
+	
+
+	public InventaryserviceImpl(InventaryRepo repo) {
+		
+		inventaryRepo=repo;
+		// TODO Auto-generated constructor stub
+	}
 
 	@Override
 	public Inventary addInventary(Inventary inv) {
@@ -34,16 +41,22 @@ public class InventaryserviceImpl implements Inventaryservice {
 		return inventaryRepo.findById( parseLong);
 	}
 
-	@Override
-	public Inventary updateInventary(Inventary inv) {
-		// TODO Auto-generated method stub
-		return inventaryRepo.save(inv);
-	}
+	/*
+	 * @Override public Inventary updateInventary(Inventary inv) { // TODO
+	 * Auto-generated method stub return inventaryRepo.save(inv); }
+	 */
 
 	@Override
 	public String deleteInventary(long parseLong) {
 		inventaryRepo.deleteById(parseLong);
 		return "Deleted employee with ID :" + parseLong;
+	}
+
+	@Override
+	public Inventary  updateInventary(Inventary inv, long id) {
+		inv.setInventaryId(id);
+		return inventaryRepo.save(inv);
+		
 	}
 
 	

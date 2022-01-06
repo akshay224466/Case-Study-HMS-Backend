@@ -62,11 +62,6 @@ public class Staff {
 		this.email = email;
 		this.empSalary = empSalary;
 	}
-	@Override
-	public String toString() {
-		return "Staff [empId=" + empId + ", empDeptId=" + empDeptId + ", empName=" + empName + ", empDeptName="
-				+ empDeptName + ", email=" + email + ", empSalary=" + empSalary + "]";
-	}
 	
 	
 	

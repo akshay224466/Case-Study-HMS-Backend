@@ -13,6 +13,13 @@ private Long bookingId;
 	private String checkout;
 	private int numOfGuests;
 	private double finalPrice;
+	private int noOfNight;
+	public int getNoOfNight() {
+		return noOfNight;
+	}
+	public void setNoOfNight(int noOfNight) {
+		this.noOfNight = noOfNight;
+	}
 	public Long getBookingId() {
 		return bookingId;
 	}

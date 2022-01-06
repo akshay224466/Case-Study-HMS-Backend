@@ -20,26 +20,16 @@ public class OwnerService implements UserDetailsService {
 	@Autowired
 	private OwnerRepository ownerRepo;
 
-	/*
-	 * //for creating/adding washer[ public Washer addWasher(Washer washer) { return
-	 * washerRepository.save(washer); }
-	 */
 //
-	public List<OwnerInformation> getOwnerInfos() {
-// TODO Auto-generated method stub
-		List<OwnerInformation> ownerInfos = ownerRepo.findAll();
-		System.out.println("Getting Owner from DB" + ownerInfos);
-		return ownerInfos;
-	}
-
 	@Override
-	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-		OwnerInformation foundedOwner = ownerRepo.findByEmail(username);
-		if (foundedOwner == null)
+	public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
+		OwnerInformation foundedUser=ownerRepo.findByemail(email);
+		if (foundedUser==null) {
 			return null;
-		String Email = foundedOwner.getEmail();
-		String Password = foundedOwner.getPassword();
-		return new User(Email, Password, new ArrayList<>());
+		}
+		String email1=foundedUser.getEmail();
+		String pass=foundedUser.getPassword();
+		return new User(email1, pass,new ArrayList<>());
 	}
 
 }

@@ -13,13 +13,15 @@ public interface Guestservice {
 
 	Guest addGuest(Guest guest);
 
-	Guest updateGuest(Guest guest);
+	/* Guest updateGuest(Guest guest); */
 
 	String deleteGuest(int id);
 
 	Optional<Guest> getGuest(int id);
 
 	List<Guest> getAllGuest();
+
+	Guest updateGuest(Guest guest, int id);
 
 
 

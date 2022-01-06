@@ -4,6 +4,7 @@ package com.Room.Controller;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -17,7 +18,7 @@ import com.Room.Models.Room;
 import com.Room.Models.RoomList;
 import com.Room.Service.Roomservice;
 
-
+@CrossOrigin(origins = "http://localhost:3000")
 @RestController
 @RequestMapping("/rooms")
 public class RoomController {
@@ -50,9 +51,10 @@ public class RoomController {
 		return this.roomService.getRoom(Long.parseLong(id));
 	}
 
-	@PutMapping("/updateRoom")
-	public Room updateRoom(@RequestBody Room room) {
-		return this.roomService.updateRoom(room);
+	@PutMapping("/update/{id}")
+	public void updateRoom(@RequestBody Room room, @PathVariable long id) {
+	
+     roomService.updateRoom(room,id);
 	}
 
 	@DeleteMapping("/delete/{id}")

@@ -4,7 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
+
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -23,10 +23,6 @@ public class ReceptionRoomController {
 	private RestTemplate restTemplate;
 	
 	
-	@PostMapping("/addRoom")
-	public Room addRoom(@RequestBody Room room) {
-		return restTemplate.postForObject("http://Room-Microservice/rooms/addRoom/", room, Room.class);
-	}
 	
 	
 	@PutMapping("/updateRoom")
@@ -56,6 +52,13 @@ public class ReceptionRoomController {
 	public Room getRoom(@PathVariable("id") String id) 
 	{
 		return restTemplate.getForObject("http://Room-Microservice/rooms/findById/"+id, Room.class);
+	}
+	
+	@GetMapping("/findRoomAvl")
+	public RoomList getRoomAvl() {
+
+		return restTemplate.getForObject("http://Room-Microservice/rooms/findRoomAvl/", RoomList.class);
+		
 	}
 	
 

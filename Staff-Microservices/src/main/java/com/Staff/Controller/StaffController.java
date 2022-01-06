@@ -4,6 +4,7 @@ package com.Staff.Controller;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -13,12 +14,13 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+
 import com.Staff.Models.Staff;
 import com.Staff.Models.StaffList;
 import com.Staff.Service.Staffservice;
 
 
-
+@CrossOrigin(origins = "http://localhost:3000")
 @RestController
 @RequestMapping("/Staff")
 public class StaffController {
@@ -44,11 +46,14 @@ public class StaffController {
 		return this.staffService.getEmp(Long.parseLong(id));
 	}
 	
-	@PutMapping("/updateEmp")
-	public Staff updateEmployee(@RequestBody Staff emp)
-	{
-		return this.staffService.updateEmp(emp);
+	
+
+	@PutMapping("/updateEmp/{id}")
+	public void updateDepartment(@RequestBody Staff emp, @PathVariable long id) {
+	
+		staffService.updateEmp(emp,id);
 	}
+
 	
 	@DeleteMapping("/deleteByEmp/{id}")
 	public String deleteEmployee(@PathVariable("id") String id)

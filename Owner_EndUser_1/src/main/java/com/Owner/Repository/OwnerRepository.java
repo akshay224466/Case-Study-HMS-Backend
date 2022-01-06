@@ -6,6 +6,8 @@ import com.Owner.Models.OwnerInformation;
 
 public interface OwnerRepository extends MongoRepository<OwnerInformation , String> {
 	
-	OwnerInformation findByEmail(String email);
+	
+
+	OwnerInformation findByemail(String email);
 
 }
